@@ -15,33 +15,34 @@ import java.util.Map;
  */
 public final class CassandraSessionStorageImpl implements CassandraSessionStorage
 {
-    private Map<String, Session> sessionMap;
 
-    public CassandraSessionStorageImpl()
-    {
-        this.sessionMap = new HashMap<>();
-    }
+	private Map<String, Session> sessionMap;
 
-    @Nullable
-    @Override
-    public Session find(@NotNull String key)
-    {
-        System.out.println("Fetching session from Cassandra with id: " + key);
-        return sessionMap.get(key);
-    }
+	public CassandraSessionStorageImpl()
+	{
+		this.sessionMap = new HashMap<>();
+	}
 
-    @NotNull
-    @Override
-    public Collection<Session> findAll()
-    {
-        return sessionMap.values();
-    }
+	@Nullable
+	@Override
+	public Session find(@NotNull String key)
+	{
+		System.out.println("Fetching session from Cassandra with id: " + key);
+		return sessionMap.get(key);
+	}
 
-    @Override
-    public boolean persist(@NotNull Session session)
-    {
-        System.out.println("Storing session with (id, email, created): " + session.getId() + ", " + session.getEmail() + ", " + session.getCreated());
-        this.sessionMap.put(session.getId(), session);
-        return true;
-    }
+	@NotNull
+	@Override
+	public Collection<Session> findAll()
+	{
+		return sessionMap.values();
+	}
+
+	@Override
+	public boolean persist(@NotNull Session session)
+	{
+		System.out.println("Storing session with (id, email, created): " + session.getId() + ", " + session.getEmail() + ", " + session.getCreated());
+		this.sessionMap.put(session.getId(), session);
+		return true;
+	}
 }

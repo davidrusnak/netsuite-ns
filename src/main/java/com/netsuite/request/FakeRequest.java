@@ -7,7 +7,8 @@ public class FakeRequest implements Request
 {
 
 	@Override
-	public String getSessionId() {
+	public String getSessionId()
+	{
 		return "123123";
 	}
 }
