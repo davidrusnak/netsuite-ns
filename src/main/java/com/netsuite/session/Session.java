@@ -6,69 +6,68 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 /**
- * Copyright © 2016, NetSuite, Inc.
+ * <p>Copyright © 2000-2015, NetSuite, Inc.</p>
  */
 public class Session
 {
-    private String id;
-    private String email;
-    private Timestamp created;
 
-    /**
-     * Used to create brand new session
-     */
-    Session(@NotNull String email)
-    {
-        if(email == null)
-        {
-            throw new IllegalArgumentException("Invalid e-mail passed");
-        }
+	@NotNull
+	private String id;
+	@NotNull
+	private String email;
+	@NotNull
+	private Timestamp created;
 
-        this.id = UUID.randomUUID().toString();
-        this.email = email;
-        this.created = new Timestamp(System.currentTimeMillis());
-    }
+	/**
+	 * Used to create brand new session
+	 */
+	Session(@NotNull String email)
+	{
+		if (email == null)
+		{
+			throw new IllegalArgumentException("Invalid e-mail passed");
+		}
 
-    /**
-     * Used to create object loaded from session storage
-     */
-    Session(@NotNull String id, @NotNull String email)
-    {
-        if(id == null || email == null)
-        {
-            throw new IllegalArgumentException("Invalid arguments passed");
-        }
+		this.id = UUID.randomUUID().toString();
+		this.email = email;
+		this.created = new Timestamp(System.currentTimeMillis());
+	}
 
-        this.id = id;
-        this.email = email;
-        this.created = new Timestamp(System.currentTimeMillis());
-    }
+	/**
+	 * Used to create object loaded from session storage
+	 */
+	public Session(@NotNull String id, @NotNull String email, @NotNull Timestamp created)
+	{
+		if (id == null || email == null || created == null)
+		{
+			throw new IllegalArgumentException("Invalid arguments passed");
+		}
 
-    /**
-     * @return trie if session contains valid data
-     */
-    public boolean isValid()
-    {
-        return id != null && !id.isEmpty() && email != null && created != null;
-    }
+		this.id = id;
+		this.email = email;
+		this.created = created;
+	}
 
-    public String getId()
-    {
-        return id;
-    }
+	/**
+	 * @return trie if session contains valid data
+	 */
+	public boolean isValid()
+	{
+		return id != null && !id.isEmpty() && email != null && created != null;
+	}
 
-    public String getEmail()
-    {
-        return email;
-    }
+	public String getId()
+	{
+		return id;
+	}
 
-    public Timestamp getCreated()
-    {
-        return created;
-    }
+	public String getEmail()
+	{
+		return email;
+	}
 
-    void setCreated(Timestamp created)
-    {
-        this.created = created;
-    }
+	public Timestamp getCreated()
+	{
+		return created;
+	}
 }

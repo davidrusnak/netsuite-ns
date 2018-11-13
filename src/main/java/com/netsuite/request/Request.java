@@ -5,5 +5,6 @@ package com.netsuite.request;
  */
 public interface Request
 {
+
 	String getSessionId();
 }
