@@ -1,13 +1,10 @@
 package com.netsuite.session;
 
 import com.netsuite.sql.SQLTool;
-import junit.framework.TestCase;
-import mockit.NonStrictExpectations;
-import mockit.integration.junit4.JMockit;
-import org.hamcrest.CoreMatchers;
+import mockit.Mock;
+import mockit.MockUp;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import java.sql.ResultSet;
@@ -18,15 +15,16 @@ import static org.hamcrest.CoreMatchers.*;
 /**
  * Copyright © 2016, NetSuite, Inc.
  */
-@RunWith(JMockit.class)
-public class SessionServiceImplTest extends TestCase {
+public class SessionServiceImplTest {
 
     @Test
     public void testGetSessionNullResultReturnsNull() throws Exception {
-        new NonStrictExpectations(SQLTool.class) {{
-            SQLTool.execute(anyString, any, any);
-            returns(null);
-        }};
+        new MockUp<SQLTool>() {
+            @Mock
+            public ResultSet execute(String sql, Object... binds) {
+                return null;
+            }
+        };
 
         SessionServiceImpl service = new SessionServiceImpl();
         Session session = service.getSession("123");
@@ -40,12 +38,14 @@ public class SessionServiceImplTest extends TestCase {
         Mockito.doReturn(true).when(resultSetMock).next();
         Mockito.doReturn("123123").when(resultSetMock).getString("sId");
         Mockito.doReturn("test@example.com").when(resultSetMock).getString("sEmail");
-        Mockito.doReturn(new Timestamp(System.currentTimeMillis()-20000)).when(resultSetMock).getTimestamp("dCreated");
+        Mockito.doReturn(new Timestamp(System.currentTimeMillis() - 20000)).when(resultSetMock).getTimestamp("dCreated");
 
-        new NonStrictExpectations(SQLTool.class) {{
-            SQLTool.execute(anyString, any, any);
-            returns(resultSetMock);
-        }};
+        new MockUp<SQLTool>() {
+            @Mock
+            public ResultSet execute(String sql, Object... binds) {
+                return resultSetMock;
+            }
+        };
 
         SessionServiceImpl service = new SessionServiceImpl();
         Session session = service.getSession("123");
@@ -63,10 +63,12 @@ public class SessionServiceImplTest extends TestCase {
         Mockito.doReturn("test@example.com").when(resultSetMock).getString("sEmail");
         Mockito.doReturn(null).when(resultSetMock).getTimestamp("dCreated");
 
-        new NonStrictExpectations(SQLTool.class) {{
-            SQLTool.execute(anyString, any, any);
-            returns(resultSetMock);
-        }};
+        new MockUp<SQLTool>() {
+            @Mock
+            public ResultSet execute(String sql, Object... binds) {
+                return resultSetMock;
+            }
+        };
 
         SessionServiceImpl service = new SessionServiceImpl();
         service.getSession("123");
