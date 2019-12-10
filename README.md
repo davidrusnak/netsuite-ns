@@ -14,7 +14,7 @@ will be either kept as is or deployed with a new code and started with **either 
 There is no prediction which machine will be started with new or old version. Machine can be also started
 with the new `v2` version and then switched back to the old `v1` version. 
 
-User must know no difference even though he can end up on any server in any version.  
+User must see no difference even though any of their request may end up on any server in any version.  
 
 Sample code is part of bigger application, so please do not change:
 
@@ -23,6 +23,26 @@ Sample code is part of bigger application, so please do not change:
 - ```com.netsuite.session.SessionService``` interface, because it's used elsewhere in the code
 
 Functionality must be preserved (return only valid, max. 1 hour old session).
+
+Example request flow
+====================
+            1st request    +----+
+        +--------------->  | v1 |
+            Session 1      +----+
+
+        --- SESSION 1 EXPIRES ---
+
+            2nd request    +----+
+        +--------------->  | v2 |
+          New session #2   +----+
+                           
+            3rd request    +----+
+        +--------------->  | v1 |
+            session #2     +----+
+
+User is authenticated in a second request, but 3rd request ends up on v1 server. 
+User must be still logged in and must see no difference. 
+
 
 Final result
 ============
@@ -35,14 +55,14 @@ Setup
 
 You can build a project with a ```./gradlew build``` or ```./gradlew.bat build```. 
 
-We highly recommend Intellij IDEA Community edition (https://www.jetbrains.com/idea/download/).
+We highly recommend Intellij IDEA Community edition (https://www.jetbrains.com/idea/download/). To generate idea project, execute ```./gradlew.bat idea```  
 
 
 How to execute
 ==============
 
-Execute current version: ```java App.java```  
+Execute current version: ```java -jar build/libs/ns_infra_test_dist.jar```  
 
-Final implementation must be executed with ``` java App.java v1``` or ``` java App.java v2``` where v1 indicates usage of SQL, v2 indicates usage of Cassandra
+Final implementation must be executed with ```java -jar build/libs/ns_infra_test_dist.jar v1``` or ```java -jar build/libs/ns_infra_test_dist.jar v2``` where v1 indicates usage of SQL, v2 indicates usage of Cassandra
 
 There's no need to install anything except gradle dependencies. All interfaces have fake implementations.
