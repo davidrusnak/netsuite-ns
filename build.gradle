@@ -1,3 +1,7 @@
+plugins {
+    id "com.github.ben-manes.versions" version "0.27.0"
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 
@@ -7,9 +11,9 @@ repositories {
 
 dependencies {
     compile 'com.intellij:annotations:12.0'
-    testCompile 'org.jmockit:jmockit:1.18',
+    testCompile 'org.jmockit:jmockit:1.48',
             'junit:junit:4.12',
-            'org.mockito:mockito-all:1.8.4'
+            'org.mockito:mockito-all:1.10.19'
 }
 
 jar {
@@ -18,4 +22,8 @@ jar {
                 'Main-Class': 'com.netsuite.App',
         )
     }
+}
+
+test {
+    jvmArgs "-javaagent:${classpath.find { it.name.contains("jmockit") }.absolutePath}"
 }
