@@ -1,7 +1,7 @@
 target/*
 .idea
 classes/
-
+build/
 *.iml
 *.iws
 *.ipr
