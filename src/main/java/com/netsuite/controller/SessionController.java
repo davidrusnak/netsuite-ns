@@ -28,7 +28,7 @@ public class SessionController
 			}
 			else
 			{
-				Session newSession = sessionService.createSession("john.doe@internet.org");
+				Session newSession = sessionService.createSession(request.getEmail());
 				return "Session created. ID: " + newSession.getId();
 			}
 		}

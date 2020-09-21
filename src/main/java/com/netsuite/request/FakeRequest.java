@@ -11,4 +11,9 @@ public class FakeRequest implements Request
 	{
 		return "123123";
 	}
+
+	@Override
+	public String getEmail() {
+		return "john.doe@internet.org";
+	}
 }

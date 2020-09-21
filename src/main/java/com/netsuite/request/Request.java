@@ -7,4 +7,6 @@ public interface Request
 {
 
 	String getSessionId();
+
+	String getEmail();
 }
