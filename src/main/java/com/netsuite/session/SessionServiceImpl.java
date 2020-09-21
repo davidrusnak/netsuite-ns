@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 /**
- * Copyright © 2016, NetSuite, Inc.
+ * Copyright 2016, NetSuite, Inc.
  */
 public class SessionServiceImpl implements SessionService
 {

@@ -1,4 +1,4 @@
-// © 2018 NetSuite Inc.
+// Copyright 2018 NetSuite Inc.
 package com.netsuite.controller;
 
 import com.netsuite.request.Request;

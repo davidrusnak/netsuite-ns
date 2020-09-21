@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Copyright © 2016, NetSuite, Inc.
+ * Copyright 2016, NetSuite, Inc.
  */
 public final class SQLTool
 {

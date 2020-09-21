@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 /**
- * <p>Copyright © 2000-2015, NetSuite, Inc.</p>
+ * <p>Copyright 2000-2015, NetSuite, Inc.</p>
  */
 public class Session
 {

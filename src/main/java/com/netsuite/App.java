@@ -7,7 +7,7 @@ import com.netsuite.session.SessionService;
 import com.netsuite.session.SessionServiceImpl;
 
 /**
- * Copyright © 2016, NetSuite, Inc.
+ * Copyright 2016, NetSuite, Inc.
  */
 class App
 {

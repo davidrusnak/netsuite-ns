@@ -8,7 +8,7 @@ import java.time.Instant;
 
 
 /**
- * Copyright © 2016, NetSuite, Inc.
+ * Copyright 2016, NetSuite, Inc.
  */
 public class SessionTest
 {

@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 import static org.hamcrest.CoreMatchers.*;
 
 /**
- * Copyright © 2016, NetSuite, Inc.
+ * Copyright 2016, NetSuite, Inc.
  */
 public class SessionServiceImplTest {
 

@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * This is just a fake class that must not be changed. There is real datastax driver on production.
  * <p>
- * Copyright © 2016, NetSuite, Inc.
+ * Copyright 2016, NetSuite, Inc.
  */
 public final class CassandraSessionStorageImpl implements CassandraSessionStorage
 {

@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 
 /**
- * Copyright © 2016, NetSuite, Inc.
+ * Copyright 2016, NetSuite, Inc.
  */
 public interface SessionService
 {

@@ -11,7 +11,7 @@ import java.util.Collection;
  * Interface available for Cassandra cluster. Currently we don't have any other possibilities of data retrieval. To
  * change behavior requires change in production cluster, which requires a lot of testing upfront.
  * <p>
- * Copyright © 2016, NetSuite, Inc.
+ * Copyright 2016, NetSuite, Inc.
  */
 public interface CassandraSessionStorage
 {
