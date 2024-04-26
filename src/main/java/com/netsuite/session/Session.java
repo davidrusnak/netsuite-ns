@@ -3,6 +3,8 @@ package com.netsuite.session;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 /**
@@ -49,11 +51,19 @@ public class Session
 	}
 
 	/**
-	 * @return trie if session contains valid data
+	 * @return check if session contains valid data
 	 */
 	public boolean isValid()
 	{
 		return id != null && !id.isEmpty() && email != null && created != null;
+	}
+
+	/**
+	 * @return true if session is no older than 60 minutes (is still live)
+	 */
+	public boolean isLive()
+	{
+		return created.after(Timestamp.from(Instant.now().minus(1, ChronoUnit.HOURS)));
 	}
 
 	public String getId()
