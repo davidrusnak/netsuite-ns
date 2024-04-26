@@ -30,6 +30,7 @@ class App {
 		var sessionController = new SessionController(service);
 
 		//Simulation...
+		//NOTE: running this simulation with v1 makes no sense as the fake SqlStorage does not work at all
 		var request1 = new RealRequest(null, MY_MAIL);
 		var response1 = sessionController.doGet(request1);
 
