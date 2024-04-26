@@ -2,39 +2,35 @@
 package com.netsuite.controller;
 
 import com.netsuite.request.Request;
+import com.netsuite.response.Response;
 import com.netsuite.session.Session;
 import com.netsuite.session.SessionService;
 
 import java.util.Objects;
 
-public class SessionController
-{
+public class SessionController {
 
 	private final SessionService sessionService;
 
-	public SessionController(SessionService sessionService)
-	{
+	public SessionController(SessionService sessionService) {
 		this.sessionService = Objects.requireNonNull(sessionService);
 	}
 
-	public String doGet(Request request)
-	{
-		try
-		{
+	public Response doGet(Request request) {
+		try {
 			Session session = sessionService.getSession(request.getSessionId());
-			if (session != null)
-			{
-				return "Session loaded. ID: " + session.getId();
-			}
-			else
-			{
+			if (session != null) {
+				System.out.println("Session loaded. ID: " + session.getId());
+				return new Response(session.getId(), "Response 1 content");
+			} else {
 				Session newSession = sessionService.createSession(request.getEmail());
-				return "Session created. ID: " + newSession.getId();
+				System.out.println("Session created. ID: " + newSession.getId());
+				return new Response(newSession.getId(), "Response 2 content");
 			}
 		}
-		catch (Exception e)
-		{
-			return "Session failed: " + e.getMessage();
+		catch (Exception e) {
+			System.out.println("Session failed: " + e.getMessage());
+			return null; //normally would rethrow and handle in a common exception handler
 		}
 	}
 }
